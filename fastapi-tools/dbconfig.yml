@@ -1,0 +1,5 @@
+dev-mysql:
+  dialect: mysql
+  datasource: runfast_go:123456@tcp(mysql2.sqlpub.com:3307)/runfast_go?parseTime=true
+  dir: db/mysql/migrations
+  table: migrations

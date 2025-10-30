@@ -1,0 +1,93 @@
+2025-10-30 10:05:44.280 | ERROR    | router.server:user_token_exception_handler:102 - 用户认证异常
+URL:GEThttp://127.0.0.1:8010/hello
+Headers:Headers({'host': '127.0.0.1:8010', 'connection': 'keep-alive', 'sec-ch-ua-platform': '"Windows"', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0', 'accept': 'application/json', 'sec-ch-ua': '"Microsoft Edge";v="141", "Not?A_Brand";v="8", "Chromium";v="141"', 'sec-ch-ua-mobile': '?0', 'sec-fetch-site': 'same-origin', 'sec-fetch-mode': 'cors', 'sec-fetch-dest': 'empty', 'referer': 'http://127.0.0.1:8010/api/docs', 'accept-encoding': 'gzip, deflate, br, zstd', 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6'})
+Traceback (most recent call last):
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\fastapi\routing.py", line 291, in app
+    solved_result = await solve_dependencies(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\fastapi\dependencies\utils.py", line 630, in solve_dependencies
+    solved = await run_in_threadpool(call, **solved_result.values)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\starlette\concurrency.py", line 39, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\anyio\to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\anyio\_backends\_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\anyio\_backends\_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ai\python-learning\fastapi-ai\common\deps.py", line 49, in check_authority
+    raise TokenAuthError()
+common.deps.TokenAuthError
+
+2025-10-30 10:10:36.292 | ERROR    | router.server:user_token_exception_handler:102 - 用户认证异常
+URL:GEThttp://127.0.0.1:8010/hello
+Headers:Headers({'host': '127.0.0.1:8010', 'connection': 'keep-alive', 'sec-ch-ua-platform': '"Windows"', 'authorization': 'Bearer 111111', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0', 'accept': 'application/json', 'sec-ch-ua': '"Microsoft Edge";v="141", "Not?A_Brand";v="8", "Chromium";v="141"', 'sec-ch-ua-mobile': '?0', 'sec-fetch-site': 'same-origin', 'sec-fetch-mode': 'cors', 'sec-fetch-dest': 'empty', 'referer': 'http://127.0.0.1:8010/api/docs', 'accept-encoding': 'gzip, deflate, br, zstd', 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6'})
+Traceback (most recent call last):
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\fastapi\routing.py", line 291, in app
+    solved_result = await solve_dependencies(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\fastapi\dependencies\utils.py", line 630, in solve_dependencies
+    solved = await run_in_threadpool(call, **solved_result.values)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\starlette\concurrency.py", line 39, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\anyio\to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\anyio\_backends\_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\anyio\_backends\_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ai\python-learning\fastapi-ai\common\deps.py", line 50, in check_authority
+    raise TokenAuthError()
+common.deps.TokenAuthError
+
+2025-10-30 10:10:46.853 | ERROR    | router.server:user_token_exception_handler:102 - 用户认证异常
+URL:GEThttp://127.0.0.1:8010/hello
+Headers:Headers({'host': '127.0.0.1:8010', 'connection': 'keep-alive', 'sec-ch-ua-platform': '"Windows"', 'authorization': 'Bearer 111111', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0', 'accept': 'application/json', 'sec-ch-ua': '"Microsoft Edge";v="141", "Not?A_Brand";v="8", "Chromium";v="141"', 'sec-ch-ua-mobile': '?0', 'sec-fetch-site': 'same-origin', 'sec-fetch-mode': 'cors', 'sec-fetch-dest': 'empty', 'referer': 'http://127.0.0.1:8010/api/docs', 'accept-encoding': 'gzip, deflate, br, zstd', 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6'})
+Traceback (most recent call last):
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\starlette\_exception_handler.py", line 51, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\fastapi\routing.py", line 291, in app
+    solved_result = await solve_dependencies(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\fastapi\dependencies\utils.py", line 630, in solve_dependencies
+    solved = await run_in_threadpool(call, **solved_result.values)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\starlette\concurrency.py", line 39, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\anyio\to_thread.py", line 33, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\anyio\_backends\_asyncio.py", line 877, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\hello\.conda\envs\py311\Lib\site-packages\anyio\_backends\_asyncio.py", line 807, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\ai\python-learning\fastapi-ai\common\deps.py", line 50, in check_authority
+    raise TokenAuthError()
+common.deps.TokenAuthError
+
