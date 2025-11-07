@@ -1,0 +1,10 @@
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "hello_world",
+  "params": {
+    "name": "world"
+  },
+  "id": 1
+}
+```
