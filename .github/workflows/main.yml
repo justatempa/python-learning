@@ -11,7 +11,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+        
+      - name: Check key start
+        run: | 
+          echo "${{ secrets.BWH }}" | head -n 2
+          
       # 使用 appleboy/ssh-action 登录服务器并执行命令
       - name: Deploy using SSH
         uses: appleboy/ssh-action@v1.0.3
@@ -21,12 +25,11 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.BWH }}
           # 端口 (可选，默认为 22)
-          port: 28022
+          port: ${{ secrets.BWH }}
 
           # 要在服务器上执行的命令或脚本
           script: |
             echo "--- 开始部署流程 ---"
-            echo $host
             # 1. 切换到项目目录
             cd /home/deploy
             
