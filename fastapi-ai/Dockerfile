@@ -26,7 +26,10 @@ RUN pip install --no-cache-dir --upgrade pip \
 COPY . .
 
 # 创建非 root 用户
-RUN adduser --disabled-password --gecos '' appuser \
+RUN adduser --disabled-password --gecos '' appuser
+
+# 创建日志目录并设置权限
+RUN mkdir -p /app/logs \
     && chown -R appuser:appuser /app
 USER appuser
 
