@@ -25,16 +25,8 @@ jobs:
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
           
-          # 将私钥写入文件
-          echo "${{ secrets.BWH }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          
           # 添加服务器到 known_hosts
-          ssh-keyscan -p ${{ secrets.PORT }} ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-          
-      - name: Test SSH Connection
-        run: |
-          ssh -i ~/.ssh/id_rsa -p ${{ secrets.PORT }} ${{ secrets.USER }}@${{ secrets.HOST }} "echo 'SSH连接成功!'"
+          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
           
       - name: Deploy using SSH
         uses: appleboy/ssh-action@v1.0.3
