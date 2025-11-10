@@ -46,7 +46,7 @@ def check_jwt_token(
 
 bearer_scheme = HTTPBearer()
 def check_authority(credentials: HTTPAuthorizationCredentials = Security(bearer_scheme)):
-    if credentials.credentials != "111111":
+    if credentials.credentials != settings.TOKEN:
          raise TokenAuthError()
 
 class TokenAuthError(Exception):

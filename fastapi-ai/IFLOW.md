@@ -1,6 +1,6 @@
 # 项目概述
 
-这是一个基于 Python 和 FastAPI 框架构建的 Web API 项目。它提供了一个结构化的起点，包含路由、配置、依赖项管理、响应处理和异常处理等功能。项目旨在快速搭建 RESTful API 服务。
+这是一个基于 Python 和 FastAPI 框架构建的 Web API 项目。它提供了一个结构化的起点，包含路由、配置、依赖项管理、响应处理和异常处理等功能。项目旨在快速搭建 RESTful API 服务，并集成了飞书 API 相关功能。
 
 ## 主要技术栈
 
@@ -9,6 +9,7 @@
 - **Uvicorn**: 用于运行 FastAPI 应用的 ASGI 服务器。
 - **Pydantic**: 用于数据验证和设置管理。
 - **Pydantic-settings**: 用于从环境变量和配置文件中加载设置。
+- **JSON-RPC**: 提供 JSON-RPC 2.0 协议支持。
 
 ## 项目架构
 
@@ -23,6 +24,8 @@
 - `schemas/`: 存放数据模型（Pydantic models），用于请求和响应数据的验证和序列化。
 - `models/`: （当前为空）通常用于存放数据库模型。
 - `logs/`: 存放日志文件。
+- `rpc/`: 存放 JSON-RPC 相关实现，包括路由、方法注册和处理逻辑。
+- `feishu_api/`: 存放飞书 API 相关功能模块，包括认证、多维表格和电子表格操作。
 
 # 构建和运行
 
@@ -75,23 +78,39 @@ gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker -b 127.0.0.1:8020
 - 路由在 `router/` 目录下进行管理。
 - 使用 `APIRouter` 来组织不同的路由分组。
 - 在 `router/server.py` 中注册所有路由。
+- 支持 REST API 和 JSON-RPC 两种路由方式。
 
 ## 配置管理
 
 - 配置信息存放在 `config/config.py` 文件中。
 - 使用 `pydantic-settings` 来管理配置，可以从环境变量中读取配置项。
+- 包含数据库配置、安全密钥、API 文档设置等。
 
 ## 依赖注入
 
 - 依赖项存放在 `common/deps.py` 文件中。
 - 使用 FastAPI 的 `Depends` 来注入依赖项。
+- 提供 JWT token 验证和权限检查功能。
 
 ## 异常处理
 
 - 全局异常处理在 `router/server.py` 中注册。
 - 自定义异常类存放在 `common/deps.py` 文件中。
+- 处理 token 过期、认证失败、权限不足等异常情况。
 
 ## 响应格式
 
 - 响应格式在 `schemas/response/resp.py` 文件中定义。
 - 使用统一的响应结构，包含状态码、消息和数据。
+
+## RPC 支持
+
+- 项目集成了 JSON-RPC 2.0 协议支持。
+- RPC 路由在 `rpc/router.py` 中定义。
+- RPC 方法在 `rpc/methods.py` 中实现并注册。
+
+## 飞书 API 集成
+
+- 项目包含飞书 API 相关模块，位于 `feishu_api/` 目录下。
+- 提供飞书认证、多维表格和电子表格操作功能。
+- 包含重试机制和频率限制控制。

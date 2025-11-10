@@ -21,6 +21,7 @@ from common.deps import check_authority
 from fastapi import Depends
 
 from api.hello import router as hello_router
+from api.bi_table import router as bi_table_router
 
 
 api_v1_router = APIRouter()
@@ -28,3 +29,4 @@ api_v1_router = APIRouter()
 # api_v1_router.include_router(items_router, tags=["测试API"], dependencies=[Depends(check_jwt_token)])
 # check_authority 权限验证内部包含了 token 验证 如果不校验权限可直接 dependencies=[Depends(check_jwt_token)]
 api_v1_router.include_router(hello_router, tags=["测试接口"], dependencies=[Depends(check_authority)])
+api_v1_router.include_router(bi_table_router, tags=["飞书表格API"], dependencies=[Depends(check_authority)])
