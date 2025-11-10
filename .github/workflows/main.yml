@@ -1,0 +1,26 @@
+name: Deploy via SSH
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+          
+      - name: Deploy using SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.BWH }}
+          port: ${{ secrets.PORT }}
+          script: |
+            echo "--- 开始部署流程 ---"
+            cd /home/deploy/python-learning
+            git pull origin main
+            echo "--- 部署完成 ---"
