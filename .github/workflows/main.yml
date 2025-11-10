@@ -3,7 +3,7 @@ name: Deploy via SSH
 on:
   push:
     branches:
-      - main # 当推送到 main 分支时触发
+      - main
 
 jobs:
   deploy:
@@ -12,33 +12,39 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         
-      - name: Check key start
-        run: | 
-          echo "${{ secrets.BWH }}" | head -n 2
+      - name: Debug SSH Key
+        run: |
+          echo "检查私钥格式:"
+          echo "${{ secrets.BWH }}" | head -n 1
+          echo "私钥长度:"
+          echo "${{ secrets.BWH }}" | wc -c
           
-      # 使用 appleboy/ssh-action 登录服务器并执行命令
+      - name: Setup SSH key and known_hosts
+        run: |
+          # 创建 .ssh 目录
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          
+          # 将私钥写入文件
+          echo "${{ secrets.BWH }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          
+          # 添加服务器到 known_hosts
+          ssh-keyscan -p ${{ secrets.PORT }} ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+          
+      - name: Test SSH Connection
+        run: |
+          ssh -i ~/.ssh/id_rsa -p ${{ secrets.PORT }} ${{ secrets.USER }}@${{ secrets.HOST }} "echo 'SSH连接成功!'"
+          
       - name: Deploy using SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
-          # 从 GitHub Secrets 获取连接信息
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.BWH }}
-          # 端口 (可选，默认为 22)
           port: ${{ secrets.PORT }}
-
-          # 要在服务器上执行的命令或脚本
           script: |
             echo "--- 开始部署流程 ---"
-            # 1. 切换到项目目录
             cd /home/deploy
-            
-            # 2. 从 Git 仓库拉取最新代码
             git pull origin main
-            
-            # 3. 运行安装和构建（如果是 Node.js 项目）
-            
-            # 4. 重启服务（例如使用 systemctl 重启一个服务）
-     
-            
             echo "--- 部署完成 ---"
