@@ -26,7 +26,7 @@ jobs:
           # 要在服务器上执行的命令或脚本
           script: |
             echo "--- 开始部署流程 ---"
-            
+            echo $host
             # 1. 切换到项目目录
             cd /home/deploy
             
