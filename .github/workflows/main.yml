@@ -11,20 +11,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        
-      - name: Debug SSH Key
-        run: |
-          echo "检查私钥格式:"
-          echo "${{ secrets.BWH }}" | head -n 1
-          echo "私钥长度:"
-          echo "${{ secrets.BWH }}" | wc -c
           
       - name: Setup SSH key and known_hosts
         run: |
-          # 创建 .ssh 目录
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          
           # 添加服务器到 known_hosts
           ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
           
