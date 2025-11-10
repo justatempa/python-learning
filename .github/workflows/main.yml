@@ -25,7 +25,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.BWH }}
           # 端口 (可选，默认为 22)
-          port: ${{ secrets.BWH }}
+          port: ${{ secrets.PORT }}
 
           # 要在服务器上执行的命令或脚本
           script: |
