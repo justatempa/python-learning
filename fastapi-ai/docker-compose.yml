@@ -1,12 +1,11 @@
-version: '3.8'
-
 services:
-  fastapi-app:
-    build: .
-    ports:
-      - "8010:8010"
-    environment:
-      - ENV=production
+  fastapi-ai:
+    container_name: fastapi-ai
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure
     volumes:
-      - ./logs:/app/logs
-    restart: unless-stopped
+      - ${PWD}:/app
+    ports:
+      - 8010:8010
