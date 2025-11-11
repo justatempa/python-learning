@@ -94,6 +94,9 @@ class Settings(BaseSettings):
 
     TOKEN: str = "11111188"
 
+    # SQLite3数据库配置
+    SQLITE_DB_PATH: str = "./data/nav.db"
+    
     # 配置.env文件路径
 
     class Config:

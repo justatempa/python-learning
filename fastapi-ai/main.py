@@ -25,12 +25,16 @@ gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker -b 127.0.0.1:8020
 """
 
 
-from router.server import create_app
-from rpc.init import init_rpc_methods
-
-app = create_app()
-
-# 初始化RPC方法
+from router.server import create_app
+from rpc.init import init_rpc_methods
+from database.manager import init_database
+
+app = create_app()
+
+# 初始化数据库
+init_database()
+
+# 初始化RPC方法
 init_rpc_methods(app)
 
 if __name__ == "__main__":

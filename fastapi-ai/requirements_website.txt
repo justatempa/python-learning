@@ -1,0 +1,4 @@
+# Website info extractor dependencies
+beautifulsoup4==4.12.3
+aiohttp==3.9.5
+requests==2.32.5

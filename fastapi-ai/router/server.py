@@ -1,14 +1,22 @@
-import traceback
-
-from fastapi import FastAPI, Request, Response
-from starlette.middleware.cors import CORSMiddleware
-from fastapi.exceptions import RequestValidationError
-from pydantic import ValidationError
-
-from router.v1_router import api_v1_router
-from rpc.router import rpc_router
-from config.config import settings
-from schemas.response import resp
+import traceback
+
+
+
+from fastapi import FastAPI, Request, Response
+
+from starlette.middleware.cors import CORSMiddleware
+
+from fastapi.exceptions import RequestValidationError
+
+from pydantic import ValidationError
+
+
+
+from router.v1_router import api_v1_router
+from rpc.router import rpc_router
+from router.nav_table import router as nav_router
+from config.config import settings
+from schemas.response import resp
 from common import deps,logger
 def create_app() -> FastAPI:
     """
@@ -38,19 +46,29 @@ def create_app() -> FastAPI:
 
     return app
 
-def register_router(app: FastAPI) -> None:
-    """
-    注册路由
-    :param app:
-    :return:
-    """
-    # 项目API
-    app.include_router(
-        api_v1_router,
-    )
-    # RPC API
-    app.include_router(
-        rpc_router,
+def register_router(app: FastAPI) -> None:
+
+    """
+
+    注册路由
+
+    :param app:
+
+    :return:
+
+    """
+
+    # 项目API
+    app.include_router(
+        api_v1_router,
+    )
+    # 导航表API
+    app.include_router(
+        nav_router,
+    )
+    # RPC API
+    app.include_router(
+        rpc_router,
     )
 
 
